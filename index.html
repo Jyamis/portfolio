@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jyamis Nyrie Huynh — Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F8F6F2; --white: #FFFFFF; --ink: #181614;
+    --ink-mid: #4A4640; --ink-light: #9A948C; --red: #C0392B;
+    --red-soft: #F5ECEB; --border: #E8E4DE;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(248,246,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; }
+  .nav-logo span { color: var(--red); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+  nav ul a:hover { color: var(--red); }
+  .nav-cta { color: var(--red) !important; border: 1px solid var(--red); padding: 0.5rem 1.2rem; border-radius: 2px; transition: background 0.2s, color 0.2s !important; }
+  .nav-cta:hover { background: var(--red) !important; color: var(--white) !important; }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem; border-right: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--red); }
+  .hero-name { font-family: var(--serif); font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 2rem; color: var(--ink); }
+  .hero-name em { font-style: italic; font-weight: 300; color: var(--red); }
+  .hero-tagline { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; font-style: italic; color: var(--ink-mid); margin-bottom: 3rem; line-height: 1.5; max-width: 420px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag { font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.9rem; border: 1px solid var(--border); border-radius: 2px; color: var(--ink-mid); background: var(--white); }
+
+  .hero-right { display: grid; grid-template-rows: 1fr 1fr; }
+
+  .hero-stat-block { display: flex; flex-direction: column; justify-content: center; padding: 3rem 4rem; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; cursor: default; transition: background 0.35s ease; }
+  .hero-stat-block:last-child { border-bottom: none; }
+
+  /* TikTok stat — large + dramatic hover */
+  .tiktok-stat { background: var(--cream); }
+  .tiktok-stat:hover { background: #0F0D0B; }
+  .tiktok-stat .stat-number { font-family: var(--serif); font-size: clamp(5rem, 9vw, 8rem); font-weight: 300; line-height: 1; margin-bottom: 0.5rem; color: var(--ink); transition: color 0.35s ease; }
+  .tiktok-stat .stat-number span { color: var(--red); transition: color 0.35s ease; }
+  .tiktok-stat .stat-label { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); transition: color 0.35s ease; }
+  .tiktok-stat:hover .stat-number { color: var(--white); }
+  .tiktok-stat:hover .stat-number span { color: #E8645A; }
+  .tiktok-stat:hover .stat-label { color: #666; }
+
+  /* Regular stat */
+  .regular-stat:hover { background: var(--white); }
+  .regular-stat .stat-number { font-family: var(--serif); font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 0.5rem; }
+  .regular-stat .stat-number span { color: var(--red); }
+  .regular-stat .stat-label { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 4rem; }
+  .section-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); white-space: nowrap; }
+  .section-rule { flex: 1; height: 1px; background: var(--border); }
+  .section-num { font-family: var(--serif); font-size: 0.85rem; color: var(--ink-light); font-style: italic; }
+  h2 { font-family: var(--serif); font-weight: 300; line-height: 1.15; }
+
+  /* ABOUT */
+  #about { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
+  .about-left h2 { font-size: clamp(2.2rem, 3.5vw, 3rem); margin-bottom: 1.5rem; color: var(--ink); }
+  .about-left h2 em { color: var(--red); font-style: italic; }
+  .about-agency { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--red-soft); color: var(--red); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.9rem; border-radius: 2px; margin-top: 1.5rem; }
+  .about-agency::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); display: inline-block; }
+  .about-right p { font-size: 1.05rem; color: var(--ink-mid); line-height: 1.8; margin-bottom: 1.25rem; }
+  .about-right p strong { color: var(--ink); font-weight: 500; }
+
+  /* CAMPAIGNS */
+  #campaigns { background: var(--cream); }
+  .campaigns-intro { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--ink-mid); max-width: 600px; line-height: 1.5; margin-bottom: 4rem; font-style: italic; }
+  .campaign-card { border: 1px solid var(--border); background: var(--white); border-radius: 2px; margin-bottom: 1.5rem; overflow: hidden; transition: box-shadow 0.25s; }
+  .campaign-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.07); }
+  .campaign-inner { display: grid; grid-template-columns: 2fr 3fr; }
+  .campaign-left { padding: 3rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; }
+  .campaign-index { font-family: var(--serif); font-size: 4rem; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: 1rem; }
+  .campaign-client { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+  .campaign-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 1rem; }
+  .campaign-type { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+  .campaign-type span { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 2px; color: var(--ink-mid); }
+  .campaign-right { padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+  .campaign-desc { font-size: 1rem; color: var(--ink-mid); line-height: 1.75; }
+  .campaign-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .campaign-stat { background: var(--cream); padding: 1.25rem 1.5rem; text-align: center; }
+  .campaign-stat-num { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; color: var(--ink); line-height: 1; margin-bottom: 0.25rem; }
+  .campaign-stat-num em { color: var(--red); font-style: normal; }
+  .campaign-stat-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+
+  /* CAMPAIGN PHOTO STRIP */
+  .photo-placeholder { width: 100%; height: 100%; background: var(--cream); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
+  .photo-placeholder-icon { width: 36px; height: 36px; border: 1.5px dashed var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--ink-light); }
+  .photo-placeholder-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); }
+
+  /* PLATFORMS */
+  #platforms { background: var(--ink); color: var(--white); }
+  #platforms .section-label { color: #E8645A; }
+  #platforms .section-rule { background: #333; }
+  #platforms .section-num { color: #666; }
+  .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #333; border: 1px solid #333; border-radius: 2px; overflow: hidden; margin-top: 3rem; }
+  .platform-item { background: var(--ink); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s; }
+  .platform-item:hover { background: #222; }
+  .platform-icon { width: 36px; height: 36px; }
+  .platform-name { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--white); }
+  .platform-desc { font-size: 0.82rem; color: #888; line-height: 1.6; }
+  .platform-badge { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 2px; width: fit-content; }
+  .badge-active { background: rgba(192,57,43,0.2); color: #E8645A; }
+  .badge-emerging { background: rgba(255,170,0,0.15); color: #FFAA00; }
+
+  /* CLIENTS */
+  #clients { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .clients-intro { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; font-style: italic; color: var(--ink-mid); max-width: 500px; line-height: 1.5; margin-bottom: 3rem; }
+  .clients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 3rem; }
+  .client-item { background: var(--white); padding: 1.75rem 1.5rem; display: flex; align-items: center; gap: 0.6rem; transition: background 0.2s; }
+  .client-item:hover { background: var(--cream); }
+  .client-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .client-name { font-size: 0.88rem; color: var(--ink); }
+  .press-section { margin-top: 3rem; }
+  .press-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1.5rem; }
+  .press-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .press-pill { font-size: 0.8rem; padding: 0.5rem 1.1rem; border: 1px solid var(--border); border-radius: 20px; color: var(--ink-mid); background: var(--cream); display: flex; align-items: center; gap: 0.5rem; }
+  .press-pill::before { content: '↗'; font-size: 0.7rem; color: var(--red); }
+  .creator-note { margin-top: 2rem; padding: 1.5rem 2rem; background: var(--red-soft); border-left: 2px solid var(--red); border-radius: 0 2px 2px 0; }
+  .creator-note p { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.6; }
+  .creator-note strong { color: var(--red); font-weight: 500; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--cream); }
+  .timeline { display: flex; flex-direction: column; }
+  .timeline-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-date { font-size: 0.78rem; color: var(--ink-light); letter-spacing: 0.05em; padding-top: 0.2rem; }
+  .timeline-company { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.25rem; }
+  .timeline-role { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.75rem; }
+  .timeline-desc { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.7; }
+
+  /* SKILLS */
+  #skills { background: var(--white); border-top: 1px solid var(--border); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+  .skill-group-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .skill-list li { font-size: 0.92rem; color: var(--ink-mid); display: flex; align-items: center; gap: 0.6rem; }
+  .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+  /* CONTACT */
+  #contact { background: var(--ink); color: var(--white); text-align: center; padding: 8rem 4rem; }
+  .contact-eyebrow { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #E8645A; margin-bottom: 2rem; }
+  .contact-heading { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 1.5rem; }
+  .contact-heading em { font-style: italic; color: #E8645A; }
+  .contact-sub { font-size: 1rem; color: #888; max-width: 500px; margin: 0 auto 3.5rem; line-height: 1.7; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--white); text-decoration: none; padding: 1rem 2rem; border: 1px solid #444; border-radius: 2px; transition: border-color 0.2s, background 0.2s; }
+  .contact-link:hover { border-color: #E8645A; background: rgba(232,100,90,0.08); }
+  .contact-link-icon { font-size: 1rem; color: #E8645A; }
+
+  /* FOOTER */
+  footer { background: #0F0D0B; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; }
+  .footer-brand { font-family: var(--serif); font-size: 0.9rem; color: #555; }
+  .footer-brand span { color: var(--red); }
+  .footer-copy { font-size: 0.75rem; color: #444; letter-spacing: 0.05em; }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 4rem 1.5rem; }
+    .hero-right { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .campaign-inner { grid-template-columns: 1fr; }
+    .campaign-left { border-right: none; border-bottom: 1px solid var(--border); }
+    .platforms-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Jyamis<span>.</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#campaigns">Work</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Toronto, ON &nbsp;·&nbsp; Marketing Professional</div>
+    <h1 class="hero-name">Jyamis<br><em>Nyrie</em><br>Huynh</h1>
+    <p class="hero-tagline">"Culturally Rooted.<br>Chronically Viral."</p>
+    <div class="hero-tags">
+      <span class="tag">Organic Social</span>
+      <span class="tag">Brand Strategy</span>
+      <span class="tag">Experiential</span>
+      <span class="tag">Creative Direction</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-block tiktok-stat">
+      <div class="stat-number">8<span>M+</span></div>
+      <div class="stat-label">Total TikTok Views Generated</div>
+    </div>
+    <div class="hero-stat-block regular-stat">
+      <div class="stat-number">5<span>+</span></div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-label">About</span>
+    <div class="section-rule"></div>
+    <span class="section-num">01</span>
+  </div>
+  <div class="about-grid">
+    <div class="about-left fade-up">
+      <h2>Building brands that <em>belong</em> to communities</h2>
+      <div class="about-agency">Red Thread — Creative Agency</div>
+    </div>
+    <div class="about-right fade-up">
+      <p>I'm a Toronto-based marketing professional with <strong>5+ years of experience</strong> turning cultural moments into brand movements. My work lives at the intersection of organic social media, brand strategy, and experiential marketing, where community-centered storytelling drives real, measurable results.</p>
+      <p>Through my freelance agency, <strong>Red Thread</strong>, I've partnered with brands across Toronto's creative ecosystem, from independent studios and coffee shops to large-scale events drawing thousands. Whether it's a campaign that goes viral on TikTok overnight or an event activation that captures the city's attention, I build strategies that resonate.</p>
+      <p>I'm especially passionate about <strong>amplifying underrepresented voices</strong> and creating culturally fluent content that moves people. Not just metrics.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS -->
+<section id="campaigns">
+  <div class="section-header">
+    <span class="section-label">Featured Work</span>
+    <div class="section-rule"></div>
+    <span class="section-num">02</span>
+  </div>
+  <p class="campaigns-intro fade-up">Four campaigns. Millions of views. Real communities moved.</p>
+
+  <!-- Campaign 01 -->
+  <div class="campaign-card fade-up">
+    <div class="campaign-inner">
+      <div class="campaign-left">
+        <div class="campaign-index">01</div>
+        <div>
+          <div class="campaign-client">It's Ok* Studios × Ontario Place</div>
+          <h3 class="campaign-title">It's Ok* World Festival</h3>
+        </div>
+        <div class="campaign-type">
+          <span>Experiential</span>
+          <span>Organic Social</span>
+          <span>TikTok Strategy</span>
+        </div>
+      </div>
+      <div class="campaign-right">
+        <p class="campaign-desc">Led the full social and promotional strategy for a two-day cultural festival at Trillium Park, headlined by Mereba. The goal was to drive foot traffic, boost brand awareness, and capture the energy of the event for an online audience. Our organic, community-driven TikTok approach turned the festival into one of the city's most talked-about creative moments, going viral multiple times and sparking conversations across the scene.</p>
+        <div class="campaign-stats">
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">700<em>+</em></div>
+            <div class="campaign-stat-label">Weekend attendees</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">650<em>K</em></div>
+            <div class="campaign-stat-label">TikTok views</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">8</div>
+            <div class="campaign-stat-label">Videos in 2 weeks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Campaign 02 -->
+  <div class="campaign-card fade-up">
+    <div class="campaign-inner">
+      <div class="campaign-left">
+        <div class="campaign-index">02</div>
+        <div>
+          <div class="campaign-client">Steady Reserve × Prime Rewind × Stackt Market</div>
+          <h3 class="campaign-title">Vintage Fill-a-Bag</h3>
+        </div>
+        <div class="campaign-type">
+          <span>Event Marketing</span>
+          <span>Brand Strategy</span>
+          <span>Media Collabs</span>
+        </div>
+      </div>
+      <div class="campaign-right">
+        <p class="campaign-desc">Directed the marketing launch for the Vintage Fill-a-Bag event at Stackt Market, combining organic social, media outlet collaborations, and on-site event branding. The campaign generated so much buzz that Stackt Market reached out directly to partner on their Spring Equinox Market, tripling attendance by the third iteration. Multiple viral TikTok moments cemented the event as a staple in the city's thrift culture.</p>
+        <div class="campaign-stats">
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">1000<em>+</em></div>
+            <div class="campaign-stat-label">Attendees (Event 3)</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">950<em>K</em></div>
+            <div class="campaign-stat-label">TikTok views</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">3</div>
+            <div class="campaign-stat-label">Successful events</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Campaign 03 — Motus Studios -->
+  <div class="campaign-card fade-up">
+    <div class="campaign-inner">
+      <div class="campaign-left">
+        <div class="campaign-index">03</div>
+        <div>
+          <div class="campaign-client">Motus Studios</div>
+          <h3 class="campaign-title">His & Hers Sweatsuit Launch</h3>
+        </div>
+        <div class="campaign-type">
+          <span>Creative Ad Campaign</span>
+          <span>Product Launch</span>
+          <span>Organic Social</span>
+        </div>
+      </div>
+      <div class="campaign-right">
+        <p class="campaign-desc">Conceived and executed a creative TikTok-led ad campaign for Motus Studios, a Toronto-based fashion brand, to launch their His & Hers sweatsuit collection. The campaign leaned into aspirational couple aesthetics and organic community storytelling, producing a single video that stopped the scroll and ignited sharing across the platform. The result was a measurable surge in online sales, a direct spike in brand traffic, and a product line that sold out entirely. Sharp creative direction, paired with the right organic strategy, can move product as powerfully as any paid campaign.</p>
+        <div class="campaign-stats">
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">853<em>K</em></div>
+            <div class="campaign-stat-label">TikTok views</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">1</div>
+            <div class="campaign-stat-label">Single video</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">Sold<em> out</em></div>
+            <div class="campaign-stat-label">Full product line</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaign 04 — National Thrift -->
+  <div class="campaign-card fade-up">
+    <div class="campaign-inner">
+      <div class="campaign-left">
+        <div class="campaign-index">04</div>
+        <div>
+          <div class="campaign-client">National Thrift</div>
+          <h3 class="campaign-title">Spring Sale Campaign</h3>
+        </div>
+        <div class="campaign-type">
+          <span>Organic Social</span>
+          <span>TikTok</span>
+          <span>Retail Traffic</span>
+        </div>
+      </div>
+      <div class="campaign-right">
+        <p class="campaign-desc">Developed and executed a TikTok-first campaign for National Thrift's Spring Sale, driving significant in-store foot traffic through organic community content. A single video generated 700K views and translated directly into a major boost in event attendance, proving that the right organic strategy can outperform paid advertising for cultural brands.</p>
+        <div class="campaign-stats">
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">700<em>K</em></div>
+            <div class="campaign-stat-label">TikTok views</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">1</div>
+            <div class="campaign-stat-label">Single video</div>
+          </div>
+          <div class="campaign-stat">
+            <div class="campaign-stat-num">↑↑</div>
+            <div class="campaign-stat-label">In-store foot traffic</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section id="platforms">
+  <div class="section-header">
+    <span class="section-label">Platforms</span>
+    <div class="section-rule"></div>
+    <span class="section-num">03</span>
+  </div>
+  <div class="platforms-grid">
+    <div class="platform-item">
+      <svg class="platform-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#E8645A" fill-opacity="0.15"/>
+        <path d="M18 12a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 9.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2zm7.2-9.84a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" fill="#E8645A"/>
+      </svg>
+      <div class="platform-name">Instagram</div>
+      <div class="platform-desc">Managed multi-brand organic growth, community engagement, and creative content strategies across a diverse portfolio of clients.</div>
+      <span class="platform-badge badge-active">Core Platform</span>
+    </div>
+    <div class="platform-item">
+      <svg class="platform-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#E8645A" fill-opacity="0.15"/>
+        <path d="M24 14.4a5.04 5.04 0 0 0 3-.96v4.32a8.4 8.4 0 0 1-3-.56v5.6a6 6 0 1 1-5.28-5.96v4.4a1.8 1.8 0 1 0 1.28 1.72V10h4a5.04 5.04 0 0 0 0 4.4z" fill="#E8645A"/>
+      </svg>
+      <div class="platform-name">TikTok</div>
+      <div class="platform-desc">8M+ views generated across campaigns. Organic, community-driven strategy that consistently drives virality and real-world results.</div>
+      <span class="platform-badge badge-active">Core Platform</span>
+    </div>
+    <div class="platform-item">
+      <svg class="platform-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#FFAA00" fill-opacity="0.12"/>
+        <circle cx="18" cy="16" r="4" stroke="#FFAA00" stroke-width="1.4" fill="none"/>
+        <path d="M14 22c0-2.21 1.79-4 4-4s4 1.79 4 4" stroke="#FFAA00" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M22 13l2-2M22 19l2 2" stroke="#FFAA00" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <div class="platform-name">RedNote</div>
+      <div class="platform-desc">Emerging platform with massive untapped potential. Actively expanding into this space. First mover advantage in the making.</div>
+      <span class="platform-badge badge-emerging">Expanding</span>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="section-header">
+    <span class="section-label">Clients & Press</span>
+    <div class="section-rule"></div>
+    <span class="section-num">04</span>
+  </div>
+  <p class="clients-intro fade-up">A growing roster of culturally connected brands, spaces, and creators.</p>
+
+  <div class="clients-grid fade-up">
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">It's Ok* Studios</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Nile Coffee Club</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Motus Studios</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Steady Reserve</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Prime Rewind</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">National Thrift</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Ontario Place</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Stackt Market</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Green Duck Matcha</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Infinit Wellness</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">BlackPOP Collective</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Solis Movement</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">Rumble Boxing</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">@desir.gt</span></div>
+    <div class="client-item"><div class="client-dot"></div><span class="client-name">@sydniepottingerr</span></div>
+  </div>
+
+  <div class="press-section fade-up">
+    <div class="press-label">Press & Media Collaborations</div>
+    <div class="press-grid">
+      <span class="press-pill">BlogTO</span>
+      <span class="press-pill">CurioCityToronto</span>
+      <span class="press-pill">SheDoesTheCity</span>
+      <span class="press-pill">Efosa</span>
+      <span class="press-pill">Global News</span>
+    </div>
+  </div>
+
+  <div class="creator-note fade-up">
+    <p><strong>Creator & Influencer Network —</strong> Jyamis maintains active working partnerships with a curated roster of creators and influencers across lifestyle, fashion, food, and culture. Ready to amplify any campaign, activation, or brand moment.</p>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-label">Experience</span>
+    <div class="section-rule"></div>
+    <span class="section-num">05</span>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">Sep 2024 – Sep 2025</div>
+      <div class="timeline-right">
+        <div class="timeline-company">Infinit Wellness</div>
+        <div class="timeline-role">Marketing Manager</div>
+        <div class="timeline-desc">Led end-to-end content creation and social media strategy across Instagram and TikTok. Managed marketing calendars aligned with product launches, seasonal campaigns, and community health initiatives. Planned and executed event activations driving user acquisition and brand awareness.</div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">Jun 2024 – Aug 2025</div>
+      <div class="timeline-right">
+        <div class="timeline-company">It's Ok* Studios</div>
+        <div class="timeline-role">Marketing Lead</div>
+        <div class="timeline-desc">Led full-spectrum marketing including brand strategy, organic social, and in-person event activations. Created content that resonated with diverse creative communities, driving measurable growth in engagement and event attendance.</div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">Aug 2023 – Jun 2024</div>
+      <div class="timeline-right">
+        <div class="timeline-company">BlackPOP & The Gift Shop Collective</div>
+        <div class="timeline-role">Marketing Director</div>
+        <div class="timeline-desc">Directed all marketing and communications for a QTBIPOC-centered creative business incubator. Owned social media strategy and content production, increasing visibility for the collective and its member businesses. Developed brand narratives attracting funding, partnerships, and community support.</div>
+      </div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-date">Jan 2021 – Mar 2023</div>
+      <div class="timeline-right">
+        <div class="timeline-company">Jiffy on Demand</div>
+        <div class="timeline-role">Digital Marketing Specialist</div>
+        <div class="timeline-desc">Managed SEO strategy and performance through keyword research, on-page optimization, and content audits. Monitored website traffic and campaign metrics using Google Analytics. Developed content marketing initiatives supporting customer acquisition and retention.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-label">Expertise</span>
+    <div class="section-rule"></div>
+    <span class="section-num">06</span>
+  </div>
+  <div class="skills-grid fade-up">
+    <div>
+      <div class="skill-group-label">Strategy & Brand</div>
+      <ul class="skill-list">
+        <li>Brand Strategy & Identity</li>
+        <li>Content Strategy</li>
+        <li>Campaign Planning</li>
+        <li>Creative Direction</li>
+        <li>Community-Centered Storytelling</li>
+      </ul>
+    </div>
+    <div>
+      <div class="skill-group-label">Social & Content</div>
+      <ul class="skill-list">
+        <li>Organic Social Media</li>
+        <li>TikTok Strategy</li>
+        <li>Instagram</li>
+        <li>Copywriting & Content Creation</li>
+        <li>RedNote (Xiaohongshu)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="skill-group-label">Experiential & Digital</div>
+      <ul class="skill-list">
+        <li>Event Marketing & Activations</li>
+        <li>Influencer & Creator Partnerships</li>
+        <li>Email Marketing</li>
+        <li>SEO & Google Analytics</li>
+        <li>Cross-functional Collaboration</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-eyebrow">Let's work together</div>
+  <h2 class="contact-heading">Got a brand that<br>needs to <em>move</em>?</h2>
+  <p class="contact-sub">Whether it's a campaign, an event, or a full brand strategy, let's build something the world talks about.</p>
+  <div class="contact-links">
+    <a href="mailto:jyamisnyrie@gmail.com" class="contact-link">
+      <span class="contact-link-icon">✉</span>
+      jyamisnyrie@gmail.com
+    </a>
+    <a href="tel:6478568130" class="contact-link">
+      <span class="contact-link-icon">✆</span>
+      647-856-8130
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Jyamis Nyrie Huynh<span> · </span>Red Thread</div>
+  <div class="footer-copy">Toronto, ON · 2025</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
